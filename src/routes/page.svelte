@@ -1,10 +1,10 @@
 <script lang="ts">
-  import './app.css'
-  import Homepage from './routes/homepage/page.svelte'
 </script>
 
 <main>
-<Homepage/>
+  <div>
+   <h4 class="text-4xl">Hello</h4>
+  </div>
 </main>
 
 <style>
