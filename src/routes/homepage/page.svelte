@@ -3,14 +3,14 @@
   import Topbar from "../../components/Topbar.svelte";
   import MidSection from "../../components/MidSection.svelte";
   import BottomSection from "../../components/BottomSection.svelte";
-
   let weatherData = null;
   let searchQuery = "meerut";
-
   async function fetchData() {
     const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=2c5b1f1f6d054f43a0e70657240103&q=${searchQuery}&days=5`);
     const data = await response.json();
+    if(!data.error){
     weatherData = data;
+    }
   }
 
   export async function searchWeather(query) {
@@ -48,8 +48,12 @@
     <Topbar  searchWeather={searchWeather} weatherData={weatherData}/>
       <MidSection {weatherData} />
       <BottomSection {weatherData} />
-    {:else}
-      <p>Loading...</p>
+    {:else
+    
+    }
+    <div class="h-full flex justify-center items-center">
+      <img src='../../../loader.gif' alt='loader' class="h-48"/>
+    </div>
     {/if}
   </div>
 </main>
@@ -59,20 +63,22 @@
     background:url('/fullpage-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
     .weather-container{
     position: relative; 
-    height: 100vh;
-    width: 100%;
     display: flex;
     /* justify-content: center; */
     width: 70%;
-    height: 95vh;
     flex-direction: column;
+}
+@media(min-width:576px){
+  .weather-container{
+    height: 90vh;
+  }
 }
 
 .weather-container::before {    
@@ -100,5 +106,10 @@
   }
   .read-the-docs {
     color: #888;
+  }
+  @media(max-width:1024px){
+    .weather-container{
+      width: 90%;
+    }
   }
 </style>
