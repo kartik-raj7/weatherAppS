@@ -66,7 +66,7 @@
   .main{
     background:url('/fullpage-bg.png');
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -83,7 +83,6 @@
     height: 90vh;
   }
 }
-
 .weather-container::before {    
       content: "";
       background-size: cover;
@@ -100,4 +99,11 @@
       width: 90%;
     }
   }
+  @media(max-width:576px){
+  .weather-container{
+    width: 100%;
+    border-radius: 0px !important;
+  }
+  
+}
 </style>

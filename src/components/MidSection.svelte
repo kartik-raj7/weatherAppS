@@ -7,12 +7,12 @@
     </script>
     
     <main class="w-full flex justify-center items-center h-2/4 py-8 sm:py-0">
-     <div class="flex flex-col sm:flex-row md:justify-between w-4/5">
+     <div class="flex flex-col sm:flex-row md:justify-between w-11/5 sm:w-4/5">
     <div class='w-full sm:w-2/4 md:w-3/5'>
       <div class="flex items-center justify-center sm:justify-start">
-        <div class="text-8xl sm:text-6xl md:text-8xl text-white opacity-80 flex"><img src={getImageForWeather(weatherData?.current?.condition?.text,baseUrl)} alt="WeatherImage" class="weather-icon-mobile"/>{temp?weatherData?.current?.feelslike_c:weatherData?.current?.feelslike_f}</div>
+        <div class="text-6xl sm:text-6xl md:text-8xl text-white opacity-80 flex"><img src={getImageForWeather(weatherData?.current?.condition?.text,baseUrl)} alt="WeatherImage" class="weather-icon-mobile"/>{temp?weatherData?.current?.feelslike_c:weatherData?.current?.feelslike_f}</div>
       <div class="flex flex-col justify-end pl-4">
-        <div class="flex flex-row text-2xl text-white opacity-80" style="{temp ?  'flex-direction: row;':'flex-direction: row-reverse;'}">
+        <div class="flex flex-row text-lg sm:text-2xl text-white opacity-80" style="{temp ?  'flex-direction: row;':'flex-direction: row-reverse;'}">
           <button on:click={() => temp = true}>°C</button> <span class="px-4">|</span>
             <button on:click={() => temp = false}>°F</button>
         </div>
@@ -44,7 +44,10 @@
      } 
     
     }
-
+    .weather-icon-mobile{
+      width: 60px;
+      padding-right: 10px;
+    }
      @media(min-width:634px){
       .weather-icon-mobile{
         display:none;

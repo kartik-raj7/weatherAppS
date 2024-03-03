@@ -29,7 +29,7 @@ async function showPosition(position:any) {
   </script>
   
   <main class="w-full flex justify-center topbar">
-    <div class="flex pt-8 w-full sm:w-4/5 justify-between flex-col sm:flex-row">
+    <div class="flex pt-8 w-11/12 sm:w-4/5 justify-between flex-col sm:flex-row">
     <div class="w-full sm:w-2/4 max-w-md mx-auto flex flex-row sm:flex-col justify-between items-center sm:items-start py-5 sm:py-0">
     <div class="text-2xl text-white opacity-80">{weatherData?.location?.name}</div>
     <div class="text-xl text-white opacity-80">{weatherData?.location?.localtime}</div>
