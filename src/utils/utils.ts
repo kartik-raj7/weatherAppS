@@ -51,3 +51,8 @@ export  let triggers = {
     "success":{mode: 'success', message: 'Weather Details Fetched',lifetime: 4},
     "error":{mode: 'danger', message: 'Please enter a valid location',lifetime: 4},
 }
+export  function getDayOfWeek(dateString) {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const dayIndex = new Date(dateString).getDay();
+    return daysOfWeek[dayIndex];
+  }
