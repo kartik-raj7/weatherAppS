@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let currentForecast;
+    export let currentForecast:any;
     import { getImageForWeather } from "../../utils/utils";
     let baseUrl = '../../../'
 </script>

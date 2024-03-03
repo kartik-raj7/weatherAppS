@@ -12,7 +12,7 @@ let currentDateTime = new Date();
         };
     });
 
-function getWeekDay(c) {
+function getWeekDay(c:any) {
     let daysList = [
         "Sunday",
         "Monday",
@@ -24,7 +24,7 @@ function getWeekDay(c) {
     ];
     return daysList[c.getDay()];
 }
-function getMonth(c) {
+function getMonth(c:any) {
     let monthsList = [
         "January",
         "February",
@@ -41,28 +41,21 @@ function getMonth(c) {
     ];
     return monthsList[c.getMonth()];
 }
-function getDate(c) {
+function getDate(c:any) {
     return c.getDate();
 }
-function getHour(c) {
+function getHour(c:any) {
     return c.getHours() % 12 || 12;
 }
-function getMinute(c) {
+function getMinute(c:any) {
     return c.getMinutes() < 10 ? "0" + c.getMinutes() : c.getMinutes();
 }
-function getMeridiem(c) {
+function getMeridiem(c:any) {
     return c.getHours() < 12 ? "AM" : "PM";
 }
 </script>
 
 <style>
-.container {
-  
-}
-
-.date-time {
-    
-}
 </style>
 
 

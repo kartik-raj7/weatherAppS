@@ -1,7 +1,6 @@
 <script lang="ts">
     import ForecastComponent from "./common/ForecastComponent.svelte";
-    export let weatherData;
-    console.log(weatherData)
+    export let weatherData: any;
 </script>
 
 <main class="w-full flex justify-center items-center h-2/4 my-4 sm:my-0">
@@ -15,7 +14,4 @@
   </main>
 
 <style>
- .backgroundc{
-    background-color: rgba(255,255,255,0.3);
- }
 </style>
