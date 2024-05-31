@@ -7,22 +7,28 @@
   import { Notifications,acts } from '@tadashi/svelte-notification';
   let weatherData:any = null;
   let searchQuery = "meerut";
-  let getWeather = null
+  let getWeather = null;
+  let visible = true;
   async function loadData() {
     acts.add(triggers.normal);
     getWeather = await fetchWeather(searchQuery);
+    visible=false;
     if (typeof getWeather === 'object' && getWeather !== null) {
     weatherData = getWeather;
-    updateBackground();
     acts.add(triggers.success);
    }
    else{
     acts.add(triggers.error);
    } 
+   visible = true;
+    setTimeout(()=>{
+      updateBackground();
+    })
   }
 
   export async function searchWeather(query:any) {
     searchQuery = query;
+    visible= false
     await loadData();
   }
 
@@ -30,11 +36,12 @@
 
   function updateBackground() {
     const isDay = isDayTime(weatherData?.location?.localtime);
+    console.log(isDay)
     const backgroundUrl = isDay ? '../../../backgroundday.png' : '../../../backgroundnight.png';
-    const weatherContainer = document.querySelector('.weather-container');
+    const weatherContainer = document.querySelector('.weather-container') as HTMLElement | null;
+    console.log(weatherContainer)
     if (weatherContainer) {
       weatherContainer.style.backgroundImage = `url('${backgroundUrl}')`;
-      weatherContainer.style.borderRadius = '25px';
     }
   }
 
@@ -46,20 +53,18 @@
 </script>
 
 <main class="main">
-  <div class="weather-container">
-    {#if weatherData}
-    <Notifications/>
-    <Topbar  searchWeather={searchWeather} weatherData={weatherData}/>
-      <MidSection {weatherData} />
-      <BottomSection {weatherData} />
-    {:else
-    
-    }
-    <div class="h-full flex justify-center items-center">
-      <img src='../../../loader.gif' alt='loader' class="h-48"/>
-    </div>
+    {#if weatherData && visible}
+      <div class="weather-container">
+        <Notifications/>
+        <Topbar searchWeather={searchWeather} weatherData={weatherData}/>
+        <MidSection {weatherData} />
+        <BottomSection {weatherData} />
+      </div>
+    {:else}
+      <div class="h-full flex justify-center items-center">
+        <img src='../../../loader.gif' alt='loader' class="h-48"/>
+      </div>
     {/if}
-  </div>
 </main>
 
 <style>
@@ -72,11 +77,17 @@
     justify-content: center;
     align-items: center;
   }
+  @keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+   }
     .weather-container{
     position: relative; 
     display: flex;
     width: 70%;
     flex-direction: column;
+    animation: fadeIn 5s;
+    border-radius: 25px;
 }
 @media(min-width:576px){
   .weather-container{
